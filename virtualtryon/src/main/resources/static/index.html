@@ -1,0 +1,929 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WearFashion - Premium AI Virtual Try-On Studio</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Main Style -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <!-- ==================== LANDING PAGE ==================== -->
+    <div id="landing-page" class="landing-page">
+        <!-- Header -->
+        <header class="landing-header">
+            <div class="logo">
+                <i class="fa-solid fa-shirt brand-icon"></i>
+                <span class="brand-name">WEAR<span>FASHION</span></span>
+            </div>
+            <nav class="landing-nav">
+                <a href="#features">Features</a>
+                <a href="#trending">Trending</a>
+                <a href="#testimonials">Reviews</a>
+                <a href="#faq">FAQ</a>
+            </nav>
+            <div class="landing-auth-btns">
+                <button class="btn-text" onclick="showAuthShell('login')">Login</button>
+                <button class="btn-premium" onclick="showAuthShell('register')">Get Started</button>
+            </div>
+        </header>
+
+        <!-- Hero Section -->
+        <section class="hero-section">
+            <div class="hero-content">
+                <div class="tagline"><i class="fa-solid fa-sparkles"></i> NEXT-GEN AI FASHION</div>
+                <h1>Step Into The Future of <span class="gradient-text">Virtual Styling</span></h1>
+                <p>Synthesize and visualize any outfit instantly using advanced AI virtual try-on models. Create a wardrobe, request styling suggestions, and find your perfect fit.</p>
+                <div class="hero-actions">
+                    <button class="btn-premium btn-lg" onclick="showAuthShell('register')">Start Designing <i class="fa-solid fa-arrow-right"></i></button>
+                    <button class="btn-secondary btn-lg" onclick="scrollToSection('features')">Explore Features</button>
+                </div>
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <span class="stat-number" data-target="99.4">0%</span>
+                        <span class="stat-label">Synthesis Accuracy</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number" data-target="5">0M+</span>
+                        <span class="stat-label">Outfits Generated</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number" data-target="150">0K+</span>
+                        <span class="stat-label">Active Designers</span>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="hero-glass-card">
+                    <div class="slider-container">
+                        <img src="images/hero_model.png" alt="AI Model Styling" class="hero-image">
+                        <div class="glass-overlay">
+                            <h4>Model Persona #1</h4>
+                            <p>Urban Winter Jacket styling report ready.</p>
+                            <div class="spark-badge"><i class="fa-solid fa-wand-magic-sparkles"></i> AI Generated</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Brand Logos Section -->
+        <section class="brands-section">
+            <div class="section-title-sm">FEATURED PARTNERS & INSPIRATIONS</div>
+            <div class="brands-grid">
+                <div class="brand-logo">ZARA</div>
+                <div class="brand-logo">H&M</div>
+                <div class="brand-logo">NIKE</div>
+                <div class="brand-logo">MANGO</div>
+                <div class="brand-logo">MYNTRA</div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section id="features" class="features-section">
+            <div class="section-header-center">
+                <h2>Tailored Styling Features</h2>
+                <p>Designed for creators, stylists, and modern fashion enthusiasts.</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
+                    <h3>AI Virtual Try-On</h3>
+                    <p>Select model personas and clothing items, then generate photorealistic mock outfits in seconds.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fa-solid fa-folder-open"></i></div>
+                    <h3>Wardrobe Organizer</h3>
+                    <p>Drag and drop clothing garments or model portrait photos to customize your virtual fitting inventory.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fa-solid fa-chart-line"></i></div>
+                    <h3>Occasion Styling Reports</h3>
+                    <p>Get instant ratings, color accent matching advice, and recommendations generated by fashion analytics.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fa-solid fa-heart"></i></div>
+                    <h3>Personal Favorites</h3>
+                    <p>Save synthesized variations to favorites, and search, filter, and sort them seamlessly.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials Section -->
+        <section id="testimonials" class="testimonials-section">
+            <div class="section-header-center">
+                <h2>What Fashion Critics Say</h2>
+                <p>Loved by designers, retailers, and shoppers alike.</p>
+            </div>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="quote-icon"><i class="fa-solid fa-quote-left"></i></div>
+                    <p>"WearFashion is a absolute game changer for virtual wardrobe previews. It's incredibly fast and accurate."</p>
+                    <div class="user-meta">
+                        <div class="user-avatar">SC</div>
+                        <div>
+                            <strong>Sophia Carter</strong>
+                            <span>Creative Director</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="quote-icon"><i class="fa-solid fa-quote-left"></i></div>
+                    <p>"We use it to preview styles before making sample patterns. Saves weeks of production overhead."</p>
+                    <div class="user-meta">
+                        <div class="user-avatar">MK</div>
+                        <div>
+                            <strong>Marcus K.</strong>
+                            <span>Lead Apparel Designer</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Newsletter Section -->
+        <section class="newsletter-section">
+            <div class="newsletter-card">
+                <h2>Join the Fashion Revolution</h2>
+                <p>Subscribe to receive styling guides, updates on AI models, and curated style cards.</p>
+                <form class="newsletter-form" onsubmit="event.preventDefault(); showToast('Subscribed to newsletter!', 'success');">
+                    <input type="email" placeholder="Enter your email address" required>
+                    <button type="submit" class="btn-premium">Subscribe</button>
+                </form>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section id="faq" class="faq-section">
+            <div class="section-header-center">
+                <h2>Frequently Asked Questions</h2>
+                <p>Everything you need to know about the WearFashion studio.</p>
+            </div>
+            <div class="faq-list">
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <h4>How does the AI virtual try-on work?</h4>
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Our backend system utilizes advanced diffusion and synthesis models. It maps a garment photo onto a model's portrait, adjusting for lighting, sizing constraints, and natural fabric folds.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <h4>How do I upload custom models?</h4>
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Under the Wardrobe tab, navigate to "Models" and click the upload zone. Drop a clean front-facing full portrait photo to create a persona.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <h4>Are my uploaded images secure?</h4>
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes. All uploaded garments, personas, and generated assets are securely hosted locally or on private cloud storage, restricted to your user session ID.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="landing-footer">
+            <div class="footer-top">
+                <div class="footer-brand">
+                    <div class="logo">
+                        <i class="fa-solid fa-shirt brand-icon"></i>
+                        <span class="brand-name">WEAR<span>FASHION</span></span>
+                    </div>
+                    <p>The premium virtual try-on studio for AI styling and wardrobe synthesis.</p>
+                </div>
+                <div class="footer-links">
+                    <div class="link-group">
+                        <h5>Explore</h5>
+                        <a href="#" onclick="openModal('about')">About Us</a>
+                        <a href="#" onclick="openModal('contact')">Contact</a>
+                    </div>
+                    <div class="link-group">
+                        <h5>Legal</h5>
+                        <a href="#" onclick="openModal('privacy')">Privacy Policy</a>
+                        <a href="#" onclick="openModal('terms')">Terms of Service</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 WearFashion AI Inc. All rights reserved.</p>
+            </div>
+        </footer>
+    </div>
+
+
+    <!-- ==================== AUTHENTICATION SHELL ==================== -->
+    <section class="auth-shell" id="auth-shell" style="display: none;">
+        <div class="auth-brand-panel">
+            <div class="auth-brand-logo" onclick="backToLanding()">
+                <i class="fa-solid fa-shirt"></i>
+                <span>WEARFASHION</span>
+            </div>
+            <div class="auth-brand-footer">
+                <h1>Crafting the Future of AI Fashion.</h1>
+                <p>Sign in to configure models, wardrobe clothes, save favorites, and generate styling reports.</p>
+            </div>
+        </div>
+
+        <div class="auth-form-panel">
+            <!-- BACK BUTTON -->
+            <button class="back-home-btn" onclick="backToLanding()" title="Back to Home"><i class="fa-solid fa-arrow-left"></i> Home</button>
+            
+            <!-- LOGIN CARD -->
+            <div class="auth-card" id="login-card">
+                <div class="auth-tabs">
+                    <button class="auth-tab active" onclick="showAuthPanel('login')">Login</button>
+                    <button class="auth-tab" onclick="showAuthPanel('register')">Register</button>
+                </div>
+                <form class="auth-form active" id="login-form" onsubmit="handleLogin(event)">
+                    <div class="form-group">
+                        <label>Email Address</label>
+                        <input type="email" id="login-email" required placeholder="name@domain.com">
+                    </div>
+                    <div class="form-group">
+                        <label>Password</label>
+                        <div class="password-input-wrapper">
+                            <input type="password" id="login-password" required placeholder="Enter password">
+                            <button type="button" class="password-toggle" onclick="togglePasswordVisibility('login-password', this)">
+                                <i class="fa-regular fa-eye"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="form-options">
+                        <label class="checkbox-container">
+                            <input type="checkbox" id="remember-me">
+                            <span class="checkmark"></span>
+                            Remember me
+                        </label>
+                        <a href="#" onclick="showAuthPanel('forgot')">Forgot Password?</a>
+                    </div>
+                    <button class="btn-premium full" type="submit"><i class="fa-solid fa-right-to-bracket"></i> Login</button>
+                </form>
+            </div>
+
+            <!-- REGISTER CARD -->
+            <div class="auth-card" id="register-card" style="display: none;">
+                <div class="auth-tabs">
+                    <button class="auth-tab" onclick="showAuthPanel('login')">Login</button>
+                    <button class="auth-tab active" onclick="showAuthPanel('register')">Register</button>
+                </div>
+                <form class="auth-form active" id="register-form" onsubmit="handleRegister(event)">
+                    <div class="form-group">
+                        <label>Full Name</label>
+                        <input type="text" id="register-name" required placeholder="Sophia Carter">
+                    </div>
+                    <div class="form-group">
+                        <label>Email Address</label>
+                        <input type="email" id="register-email" required placeholder="you@domain.com">
+                    </div>
+                    <div class="form-group">
+                        <label>Password</label>
+                        <div class="password-input-wrapper">
+                            <input type="password" id="register-password" required placeholder="Min 8 characters" oninput="checkPasswordStrength(this)">
+                            <button type="button" class="password-toggle" onclick="togglePasswordVisibility('register-password', this)">
+                                <i class="fa-regular fa-eye"></i>
+                            </button>
+                        </div>
+                        <div class="pw-strength-meter">
+                            <div class="pw-strength-bar" id="password-strength-bar"></div>
+                        </div>
+                        <span class="password-strength-text" id="password-strength-text">Password strength</span>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Gender</label>
+                            <select id="register-gender" required>
+                                <option value="Female">Female</option>
+                                <option value="Male">Male</option>
+                                <option value="Unisex">Unisex</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Age</label>
+                            <input type="number" id="register-age" required min="1" max="120" placeholder="24">
+                        </div>
+                    </div>
+                    <button class="btn-premium full" type="submit"><i class="fa-solid fa-user-plus"></i> Create Account</button>
+                </form>
+            </div>
+
+            <!-- FORGOT PASSWORD CARD -->
+            <div class="auth-card" id="forgot-card" style="display: none;">
+                <div class="auth-header">
+                    <h2>Reset Password</h2>
+                    <p>Enter your email and we'll send a recovery link.</p>
+                </div>
+                <form class="auth-form active" id="forgot-form" onsubmit="handleForgotPassword(event)">
+                    <div class="form-group">
+                        <label>Email Address</label>
+                        <input type="email" id="forgot-email" required placeholder="you@example.com">
+                    </div>
+                    <button class="btn-premium full" type="submit"><i class="fa-solid fa-paper-plane"></i> Send Link</button>
+                    <button class="btn-secondary full" type="button" onclick="showAuthPanel('login')">Back to Login</button>
+                </form>
+            </div>
+
+            <!-- EMAIL VERIFICATION CARD -->
+            <div class="auth-card" id="verify-card" style="display: none;">
+                <div class="auth-header">
+                    <h2>Verify Your Email</h2>
+                    <p>An OTP verification code was sent to <strong id="verify-email-display">your email</strong>. Please enter it below.</p>
+                </div>
+                <form class="auth-form active" id="verify-form" onsubmit="handleOtpVerification(event)">
+                    <div class="form-group">
+                        <label>Verification Code</label>
+                        <div class="otp-inputs-wrapper">
+                            <input type="text" class="otp-digit" maxlength="1" oninput="focusNextOtpDigit(this, 1)" onkeydown="focusPrevOtpDigit(this, 1)">
+                            <input type="text" class="otp-digit" maxlength="1" oninput="focusNextOtpDigit(this, 2)" onkeydown="focusPrevOtpDigit(this, 2)">
+                            <input type="text" class="otp-digit" maxlength="1" oninput="focusNextOtpDigit(this, 3)" onkeydown="focusPrevOtpDigit(this, 3)">
+                            <input type="text" class="otp-digit" maxlength="1" oninput="focusNextOtpDigit(this, 4)" onkeydown="focusPrevOtpDigit(this, 4)">
+                            <input type="text" class="otp-digit" maxlength="1" oninput="focusNextOtpDigit(this, 5)" onkeydown="focusPrevOtpDigit(this, 5)">
+                            <input type="text" class="otp-digit" maxlength="1" oninput="focusNextOtpDigit(this, 6)" onkeydown="focusPrevOtpDigit(this, 6)">
+                        </div>
+                        <input type="hidden" id="otp-complete-value">
+                    </div>
+                    <div class="otp-timer-container">
+                        Resend OTP in: <span id="otp-timer">05:00</span>
+                    </div>
+                    <button class="btn-premium full" type="submit"><i class="fa-solid fa-shield-check"></i> Verify OTP</button>
+                    <button class="btn-secondary full" type="button" id="btn-resend-otp" disabled onclick="resendOtpCode()"><i class="fa-solid fa-rotate-right"></i> Resend Code</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ==================== MAIN APP SHELL ==================== -->
+    <div class="app-shell" id="app-shell" style="display: none;">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="brand-block" onclick="switchTab('dashboard')">
+                <div class="logo-mark"><i class="fa-solid fa-shirt"></i></div>
+                <div class="brand-meta">
+                    <strong>WearFashion</strong>
+                    <span>AI STUDIO</span>
+                </div>
+            </div>
+
+            <nav class="side-nav">
+                <button class="nav-btn" id="nav-dashboard" onclick="switchTab('dashboard')">
+                    <i class="fa-solid fa-table-columns"></i>
+                    <span>Dashboard</span>
+                </button>
+                <button class="nav-btn" id="nav-studio" onclick="switchTab('studio')">
+                    <i class="fa-solid fa-wand-magic-sparkles"></i>
+                    <span>Try-On Studio</span>
+                </button>
+                <button class="nav-btn" id="nav-wardrobe" onclick="switchTab('wardrobe')">
+                    <i class="fa-solid fa-box-archive"></i>
+                    <span>Wardrobe</span>
+                </button>
+                <button class="nav-btn" id="nav-favorites" onclick="switchTab('favorites')">
+                    <i class="fa-solid fa-heart"></i>
+                    <span>Favorites</span>
+                </button>
+                <button class="nav-btn" id="nav-history" onclick="switchTab('history')">
+                    <i class="fa-solid fa-clock-rotate-left"></i>
+                    <span>History Log</span>
+                </button>
+                <button class="nav-btn" id="nav-reports" onclick="switchTab('reports')">
+                    <i class="fa-solid fa-chart-pie"></i>
+                    <span>AI Reports</span>
+                </button>
+                <button class="nav-btn" id="nav-reviews" onclick="switchTab('reviews')">
+                    <i class="fa-solid fa-star-half-stroke"></i>
+                    <span>Reviews Feed</span>
+                </button>
+                <button class="nav-btn" id="nav-profile" onclick="switchTab('profile')">
+                    <i class="fa-solid fa-user-gear"></i>
+                    <span>Profile Panel</span>
+                </button>
+            </nav>
+
+            <div class="sidebar-actions">
+                <button class="icon-text-btn" id="nav-notifications" onclick="switchTab('notifications')">
+                    <div class="notify-icon-wrapper">
+                        <i class="fa-solid fa-bell"></i>
+                        <span class="unread-badge" id="notification-badge" style="display: none;">0</span>
+                    </div>
+                    <span>Notifications</span>
+                </button>
+                <button class="icon-text-btn" onclick="toggleTheme()">
+                    <i class="fa-solid fa-sun" id="theme-icon"></i>
+                    <span>Theme Mode</span>
+                </button>
+                <button class="icon-text-btn danger" onclick="logout()">
+                    <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                    <span>Sign Out</span>
+                </button>
+            </div>
+        </aside>
+
+        <!-- Main Application Area -->
+        <main>
+            
+            <!-- TABS/PAGES -->
+
+            <!-- 1. DASHBOARD TAB -->
+            <section id="tab-dashboard" class="tab-content">
+                <div class="section-header">
+                    <div class="section-header-title">
+                        <h2>Designer Dashboard</h2>
+                        <p>Welcome back, <span id="dashboard-user-name">Guest</span>. Here is your wardrobe statistics.</p>
+                    </div>
+                </div>
+
+                <div class="dashboard-stats-grid">
+                    <div class="stat-card-premium" onclick="switchTab('wardrobe', 'person')">
+                        <div class="stat-card-glow"></div>
+                        <div class="stat-card-icon"><i class="fa-solid fa-user-tie"></i></div>
+                        <div class="stat-card-info">
+                            <span class="count-value animate-number" id="dash-models-count">0</span>
+                            <span class="count-lbl">Personas Created</span>
+                        </div>
+                    </div>
+                    <div class="stat-card-premium" onclick="switchTab('wardrobe', 'clothing')">
+                        <div class="stat-card-glow"></div>
+                        <div class="stat-card-icon"><i class="fa-solid fa-shirt"></i></div>
+                        <div class="stat-card-info">
+                            <span class="count-value animate-number" id="dash-clothes-count">0</span>
+                            <span class="count-lbl">Wardrobe Items</span>
+                        </div>
+                    </div>
+                    <div class="stat-card-premium" onclick="switchTab('history')">
+                        <div class="stat-card-glow"></div>
+                        <div class="stat-card-icon"><i class="fa-solid fa-image"></i></div>
+                        <div class="stat-card-info">
+                            <span class="count-value animate-number" id="dash-history-count">0</span>
+                            <span class="count-lbl">AI Generations</span>
+                        </div>
+                    </div>
+                    <div class="stat-card-premium" onclick="switchTab('favorites')">
+                        <div class="stat-card-glow"></div>
+                        <div class="stat-card-icon"><i class="fa-solid fa-heart"></i></div>
+                        <div class="stat-card-info">
+                            <span class="count-value animate-number" id="dash-favorites-count">0</span>
+                            <span class="count-lbl">Liked Styles</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="dashboard-interactive-row">
+                    <div class="glass-card flex-double dashboard-interactive-box">
+                        <h3><i class="fa-solid fa-bolt"></i> Quick Actions</h3>
+                        <div class="dashboard-quick-actions">
+                            <button class="action-tile" onclick="switchTab('studio')">
+                                <div class="tile-icon"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
+                                <span>Try-On Studio</span>
+                            </button>
+                            <button class="action-tile" onclick="switchTab('wardrobe', 'clothing')">
+                                <div class="tile-icon"><i class="fa-solid fa-cloud-arrow-up"></i></div>
+                                <span>Upload Clothes</span>
+                            </button>
+                            <button class="action-tile" onclick="switchTab('wardrobe', 'person')">
+                                <div class="tile-icon"><i class="fa-solid fa-user-plus"></i></div>
+                                <span>Add Persona</span>
+                            </button>
+                            <button class="action-tile" onclick="switchTab('profile')">
+                                <div class="tile-icon"><i class="fa-solid fa-sliders"></i></div>
+                                <span>Edit Profile</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="glass-card flex-single dashboard-interactive-box">
+                        <h3><i class="fa-solid fa-clock-rotate-left"></i> Recent Activity</h3>
+                        <div class="recent-activities-list" id="dashboard-activity-list">
+                            <div class="activity-empty-message">No recent generations. Start styling outfits!</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 2. TRY-ON STUDIO TAB -->
+            <section id="tab-studio" class="tab-content">
+                <div class="section-header">
+                    <div class="section-header-title">
+                        <h2>Virtual Try-On Studio</h2>
+                        <p>Configure a model persona and clothing garment to synthesize the styled result.</p>
+                    </div>
+                </div>
+
+                <div class="studio-grid">
+                    <div class="studio-selectors">
+                        <!-- Model Selection -->
+                        <div class="glass-card panel-card">
+                            <div class="panel-header">
+                                <h3>Model Persona</h3>
+                                <span class="badge" id="person-count">0 available</span>
+                            </div>
+                            <div class="item-selection-grid" id="studio-person-grid">
+                                <div class="embedded-upload-card" onclick="switchTab('wardrobe', 'person')">
+                                    <i class="fa-solid fa-circle-plus"></i>
+                                    <span>Add Model</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Clothing Selection -->
+                        <div class="glass-card panel-card">
+                            <div class="panel-header">
+                                <h3>Clothing Item</h3>
+                                <span class="badge" id="clothing-count">0 available</span>
+                            </div>
+                            <div class="item-selection-grid" id="studio-clothing-grid">
+                                <div class="embedded-upload-card" onclick="switchTab('wardrobe', 'clothing')">
+                                    <i class="fa-solid fa-circle-plus"></i>
+                                    <span>Add Clothes</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Canvas/Output Panel -->
+                    <div class="glass-card canvas-card">
+                        <div class="canvas-display-container">
+                            <div class="canvas-placeholder" id="generator-placeholder">
+                                <i class="fa-solid fa-wand-magic-sparkles"></i>
+                                <h4>Synthesis Canvas Ready</h4>
+                                <p>Select both inputs, then click Generate to create the look.</p>
+                            </div>
+                            
+                            <!-- Image Display -->
+                            <img id="synthesized-result" style="display: none;" alt="Try-on Output">
+                            
+                            <!-- Synthesis Loading Screen -->
+                            <div class="synthesis-loader" id="generator-loader" style="display: none;">
+                                <div class="synthesis-spinner">
+                                    <div class="double-bounce1"></div>
+                                    <div class="double-bounce2"></div>
+                                </div>
+                                <h4 id="loader-message">Styling Outfit...</h4>
+                                <div class="progress-bar-container">
+                                    <div class="progress-bar" id="generator-progress"></div>
+                                </div>
+                                <span id="loader-percent">0%</span>
+                            </div>
+                        </div>
+
+                        <button class="btn-premium btn-lg" id="btn-generate" onclick="triggerTryOn()" disabled>
+                            <i class="fa-solid fa-wand-magic"></i> Generate Try-On
+                        </button>
+                        
+                        <div class="action-group" id="post-actions" style="display: none;">
+                            <button class="btn-secondary" onclick="saveToHistoryLog()"><i class="fa-solid fa-bookmark"></i> Save to History</button>
+                            <button class="btn-secondary" onclick="generateStylingReport()"><i class="fa-solid fa-sparkles"></i> Get AI Report</button>
+                            <button class="btn-secondary" id="btn-like-synthesis" onclick="likeSynthesizedImage()"><i class="fa-solid fa-heart"></i> Like Style</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 3. WARDROBE MANAGER TAB -->
+            <section id="tab-wardrobe" class="tab-content">
+                <div class="section-header">
+                    <div class="section-header-title">
+                        <h2>Wardrobe & Model Inventory</h2>
+                        <p>Upload and manage clothes and model personas.</p>
+                    </div>
+                </div>
+
+                <div class="wardrobe-navigation-tabs">
+                    <button class="wardrobe-tab-btn active" id="wardrobe-tab-clothing-btn" onclick="switchWardrobeTab('clothing')">
+                        <i class="fa-solid fa-shirt"></i> Clothes Inventory
+                    </button>
+                    <button class="wardrobe-tab-btn" id="wardrobe-tab-person-btn" onclick="switchWardrobeTab('person')">
+                        <i class="fa-solid fa-user-tie"></i> Models & Personas
+                    </button>
+                </div>
+
+                <!-- CLOTHING MANAGMENT -->
+                <div id="wardrobe-clothing" class="wardrobe-content active">
+                    <div class="manager-grid">
+                        <div class="glass-card">
+                            <h4><i class="fa-solid fa-cloud-arrow-up"></i> Upload Clothing Garment</h4>
+                            <form id="form-upload-clothing" class="upload-form" onsubmit="handleClothingUpload(event)">
+                                <div class="form-group">
+                                    <label for="clothing-name">Item / Brand Name</label>
+                                    <input type="text" id="clothing-name" required placeholder="Nike Training Fleece Hoodie">
+                                </div>
+                                <div class="form-group">
+                                    <label for="clothing-type">Garment Category</label>
+                                    <select id="clothing-type" required>
+                                        <option value="T-Shirt">T-Shirt</option>
+                                        <option value="Shirt">Shirt</option>
+                                        <option value="Jacket">Jacket</option>
+                                        <option value="Dress">Dress</option>
+                                        <option value="Hoodie">Hoodie</option>
+                                        <option value="Sweater">Sweater</option>
+                                        <option value="Blazer">Blazer</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="clothing-color">Color Accent</label>
+                                    <input type="text" id="clothing-color" required placeholder="Heather Charcoal">
+                                </div>
+                                <div class="form-group">
+                                    <label>Garment Image file</label>
+                                    <div class="dropzone" onclick="document.getElementById('clothing-file').click()">
+                                        <i class="fa-solid fa-images"></i>
+                                        <p>Drag file or Click to browse</p>
+                                        <p class="text-sm">JPEG/PNG/WEBP files</p>
+                                        <input type="file" id="clothing-file" accept="image/*" style="display: none;" required onchange="previewFile(this, 'clothing-preview')">
+                                    </div>
+                                    <div class="preview-thumbnail" id="clothing-preview" style="display: none;">
+                                        <img src="" alt="Clothing Preview">
+                                    </div>
+                                </div>
+                                <button type="submit" class="btn-premium full"><i class="fa-solid fa-upload"></i> Upload to Wardrobe</button>
+                            </form>
+                        </div>
+                        <div class="glass-card">
+                            <h4><i class="fa-solid fa-list-ul"></i> Clothes Inventory</h4>
+                            <div class="manager-list-grid" id="manager-clothing-grid"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PERSONA MANAGEMENT -->
+                <div id="wardrobe-person" class="wardrobe-content">
+                    <div class="manager-grid">
+                        <div class="glass-card">
+                            <h4><i class="fa-solid fa-user-plus"></i> Add Model Persona</h4>
+                            <form id="form-upload-person" class="upload-form" onsubmit="handlePersonUpload(event)">
+                                <div class="form-group">
+                                    <label for="person-gender">Gender / Portrait Type</label>
+                                    <select id="person-gender" required>
+                                        <option value="Female">Female</option>
+                                        <option value="Male">Male</option>
+                                        <option value="Unisex">Unisex</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="person-age">Target Age</label>
+                                    <input type="number" id="person-age" required min="1" max="120" placeholder="25">
+                                </div>
+                                <div class="form-group">
+                                    <label>Model Image file</label>
+                                    <div class="dropzone" onclick="document.getElementById('person-file').click()">
+                                        <i class="fa-solid fa-image-portrait"></i>
+                                        <p>Drag file or Click to browse</p>
+                                        <p class="text-sm">JPEG/PNG/WEBP (Clear portrait)</p>
+                                        <input type="file" id="person-file" accept="image/*" style="display: none;" required onchange="previewFile(this, 'person-preview')">
+                                    </div>
+                                    <div class="preview-thumbnail" id="person-preview" style="display: none;">
+                                        <img src="" alt="Person Preview">
+                                    </div>
+                                </div>
+                                <button type="submit" class="btn-premium full"><i class="fa-solid fa-plus"></i> Create Persona</button>
+                            </form>
+                        </div>
+                        <div class="glass-card">
+                            <h4><i class="fa-solid fa-users"></i> Model Personas</h4>
+                            <div class="manager-list-grid" id="manager-person-grid"></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 4. FAVORITES TAB -->
+            <section id="tab-favorites" class="tab-content">
+                <div class="section-header">
+                    <div class="section-header-title">
+                        <h2>Liked & Saved Styles</h2>
+                        <p>Manage your curated collection of favorite AI synthesis generations.</p>
+                    </div>
+                </div>
+
+                <div class="favorites-search-row">
+                    <div class="search-input-wrapper">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                        <input type="text" id="favorite-search-input" placeholder="Search by name, type, or color..." oninput="filterFavorites()">
+                    </div>
+                    <div class="filter-controls">
+                        <select id="favorite-filter-category" onchange="filterFavorites()">
+                            <option value="All">All Categories</option>
+                            <option value="T-Shirt">T-Shirt</option>
+                            <option value="Shirt">Shirt</option>
+                            <option value="Jacket">Jacket</option>
+                            <option value="Dress">Dress</option>
+                            <option value="Hoodie">Hoodie</option>
+                            <option value="Sweater">Sweater</option>
+                            <option value="Blazer">Blazer</option>
+                        </select>
+                        <select id="favorite-sort-by" onchange="filterFavorites()">
+                            <option value="Newest">Newest First</option>
+                            <option value="Oldest">Oldest First</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="favorites-list-grid" id="favorites-grid">
+                    <div class="empty-placeholder">
+                        <i class="fa-solid fa-heart-crack"></i>
+                        <h3>No Favorites Saved</h3>
+                        <p>Generate some styles in the Studio and click "Like Style" to build your favorites.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 5. HISTORY LOG TAB -->
+            <section id="tab-history" class="tab-content">
+                <div class="history-header">
+                    <div class="section-header-title">
+                        <h2>Try-On History Log</h2>
+                        <p>Review, download, or clear your past AI output logs.</p>
+                    </div>
+                    <button class="btn-secondary clear-btn" id="btn-clear-history" onclick="clearAllHistory()">
+                        <i class="fa-solid fa-trash-can"></i> Clear All History
+                    </button>
+                </div>
+                
+                <div class="history-timeline" id="history-timeline"></div>
+            </section>
+
+            <!-- 6. AI STYLING REPORTS TAB -->
+            <section id="tab-reports" class="tab-content">
+                <div class="section-header">
+                    <div class="section-header-title">
+                        <h2>AI Styling Reports</h2>
+                        <p>Ratings, color palette reviews, and recommendations generated by fashion analytics.</p>
+                    </div>
+                </div>
+                
+                <div class="reports-grid" id="reports-grid"></div>
+            </section>
+
+            <!-- 7. REVIEWS TAB -->
+            <section id="tab-reviews" class="tab-content">
+                <div class="section-header">
+                    <div class="section-header-title">
+                        <h2>Customer Reviews & Feed</h2>
+                        <p>Hear what other users think about synthesized styles and share your own reviews.</p>
+                    </div>
+                </div>
+
+                <div class="reviews-page-grid">
+                    <div class="glass-card review-submit-card">
+                        <h3>Write a Review</h3>
+                        <form id="form-submit-review" onsubmit="handleReviewSubmit(event)">
+                            <div class="form-group">
+                                <label>Your Rating</label>
+                                <div class="rating-input-stars">
+                                    <i class="fa-regular fa-star review-star-input" data-value="1" onclick="setReviewRating(1)"></i>
+                                    <i class="fa-regular fa-star review-star-input" data-value="2" onclick="setReviewRating(2)"></i>
+                                    <i class="fa-regular fa-star review-star-input" data-value="3" onclick="setReviewRating(3)"></i>
+                                    <i class="fa-regular fa-star review-star-input" data-value="4" onclick="setReviewRating(4)"></i>
+                                    <i class="fa-regular fa-star review-star-input" data-value="5" onclick="setReviewRating(5)"></i>
+                                </div>
+                                <input type="hidden" id="review-rating-value" value="0" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="review-title">Review Title</label>
+                                <input type="text" id="review-title" placeholder="Stunning Synthesis Results!" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="review-content">Comments</label>
+                                <textarea id="review-content" rows="4" placeholder="Share your experience using the virtual try-on models..." required></textarea>
+                            </div>
+                            <button type="submit" class="btn-premium full"><i class="fa-solid fa-feather"></i> Submit Review</button>
+                        </form>
+                    </div>
+
+                    <div class="glass-card reviews-feed-card">
+                        <h3>Recent User Reviews</h3>
+                        <div class="reviews-feed" id="reviews-feed-container">
+                            <!-- Populated dynamically via localStorage -->
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 8. PROFILE SETTINGS TAB -->
+            <section id="tab-profile" class="tab-content">
+                <div class="section-header">
+                    <div class="section-header-title">
+                        <h2>User Profile Settings</h2>
+                        <p>Configure details, update password parameters, or update global settings.</p>
+                    </div>
+                </div>
+
+                <div class="profile-layout-grid">
+                    <div class="glass-card profile-info-card">
+                        <div class="profile-avatar-block">
+                            <div class="avatar-circle" id="profile-avatar-circle">U</div>
+                            <h3 id="profile-name-title">Sophia Carter</h3>
+                            <span id="profile-email-lbl">you@domain.com</span>
+                        </div>
+                        <div class="profile-stats-mini">
+                            <div class="mini-stat">
+                                <strong id="profile-stat-models">0</strong>
+                                <span>Personas</span>
+                            </div>
+                            <div class="mini-stat">
+                                <strong id="profile-stat-clothes">0</strong>
+                                <span>Clothes</span>
+                            </div>
+                            <div class="mini-stat">
+                                <strong id="profile-stat-favorites">0</strong>
+                                <span>Favorites</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="glass-card profile-form-card">
+                        <h3>Update Account Details</h3>
+                        <form id="form-update-profile" onsubmit="handleProfileUpdate(event)">
+                            <div class="form-group">
+                                <label for="profile-name">Full Name</label>
+                                <input type="text" id="profile-name" required>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="profile-gender">Gender</label>
+                                    <select id="profile-gender">
+                                        <option value="Female">Female</option>
+                                        <option value="Male">Male</option>
+                                        <option value="Unisex">Unisex</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="profile-age">Age</label>
+                                    <input type="number" id="profile-age" required min="1" max="120">
+                                </div>
+                            </div>
+                            <button type="submit" class="btn-premium"><i class="fa-solid fa-floppy-disk"></i> Save Details</button>
+                        </form>
+
+                        <hr class="profile-separator">
+
+                        <h3>Change Password</h3>
+                        <form id="form-update-password" onsubmit="handlePasswordUpdate(event)">
+                            <div class="form-group">
+                                <label for="profile-old-password">Current Password</label>
+                                <input type="password" id="profile-old-password" placeholder="Enter current password" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="profile-new-password">New Password</label>
+                                <input type="password" id="profile-new-password" placeholder="Enter new password" required>
+                            </div>
+                            <button type="submit" class="btn-premium"><i class="fa-solid fa-key"></i> Update Password</button>
+                        </form>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 9. NOTIFICATIONS TAB -->
+            <section id="tab-notifications" class="tab-content">
+                <div class="history-header">
+                    <div class="section-header-title">
+                        <h2>Notifications Center</h2>
+                        <p>Keep track of training parameters, wardrobe changes, and styling actions.</p>
+                    </div>
+                    <button class="btn-secondary clear-btn" onclick="clearAllNotifications()">
+                        <i class="fa-solid fa-bell-slash"></i> Clear All Alerts
+                    </button>
+                </div>
+
+                <div class="notifications-feed-list" id="notifications-container">
+                    <!-- Populated dynamically via localStorage -->
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <!-- ==================== TOAST & MODAL SERVICES ==================== -->
+    <div class="toast-container" id="toast-container"></div>
+
+    <!-- Dynamic Overlay Modal for legal and general pages -->
+    <div class="modal-overlay" id="info-modal" style="display: none;">
+        <div class="modal-card">
+            <div class="modal-header">
+                <h3 id="modal-title">Information</h3>
+                <button class="close-modal-btn" onclick="closeModal()"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div class="modal-body" id="modal-content">
+                <!-- Loaded dynamically -->
+            </div>
+        </div>
+    </div>
+
+    <script src="js/app.js"></script>
+</body>
+</html>
