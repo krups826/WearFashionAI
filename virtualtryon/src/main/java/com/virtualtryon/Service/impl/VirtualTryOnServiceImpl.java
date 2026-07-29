@@ -15,6 +15,7 @@ import com.virtualtryon.Repository.PersonImageRepository;
 import com.virtualtryon.Repository.UserRepository;
 
 import com.virtualtryon.Service.VirtualTryOnService;
+import com.virtualtryon.Service.AIService;
 
 import org.springframework.core.io.ByteArrayResource;
 
@@ -52,7 +53,7 @@ public class VirtualTryOnServiceImpl
     private String gpuBaseUrl;
 
     private static final String GENERATED_IMAGE_DIR =
-            "generated-images";
+            "outputs/tryon";
 
 
     private final UserRepository userRepository;
@@ -67,13 +68,16 @@ public class VirtualTryOnServiceImpl
 
     private final RestTemplate restTemplate;
 
+    private final AIService aiService;
+
 
     public VirtualTryOnServiceImpl(
             UserRepository userRepository,
             PersonImageRepository personImageRepository,
             ClothingRepository clothingRepository,
             GeneratedImageRepository generatedImageRepository,
-            HistoryRepository historyRepository
+            HistoryRepository historyRepository,
+            AIService aiService
     ) {
 
         this.userRepository =
@@ -90,6 +94,9 @@ public class VirtualTryOnServiceImpl
 
         this.historyRepository =
                 historyRepository;
+
+        this.aiService =
+                aiService;
 
         this.restTemplate =
                 new RestTemplate();
@@ -268,7 +275,7 @@ public class VirtualTryOnServiceImpl
             );
 
             System.out.println(
-                    "CALLING VIRTUALTRYON AI"
+                    "CALLING AISERVICE FASTAPI WRAPPERS"
             );
 
             System.out.println(
@@ -276,17 +283,7 @@ public class VirtualTryOnServiceImpl
             );
 
 
-            String generateUrl = gpuBaseUrl + "/tryon";
-
-            ResponseEntity<byte[]> imageResponse =
-                    restTemplate.exchange(
-                            generateUrl,
-                            HttpMethod.POST,
-                            requestEntity,
-                            byte[].class
-                    );
-
-            byte[] imageBytes = imageResponse.getBody();
+            byte[] imageBytes = aiService.generateTryOn(person, fabric, garmentType);
 
             if (imageBytes == null || imageBytes.length == 0) {
 

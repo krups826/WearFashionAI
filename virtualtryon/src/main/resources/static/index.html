@@ -15,6 +15,11 @@
 </head>
 <body>
 
+    <!-- Global Theme Toggle -->
+    <button class="theme-toggle-btn" onclick="toggleTheme()" aria-label="Toggle Theme">
+        <i class="fa-solid fa-sun" id="theme-icon"></i>
+    </button>
+
     <!-- ==================== LANDING PAGE ==================== -->
     <div id="landing-page" class="landing-page">
         <!-- Header -->
@@ -65,7 +70,7 @@
                     <div class="slider-container">
                         <img src="images/hero_model.png" alt="AI Model Styling" class="hero-image">
                         <div class="glass-overlay">
-                            <h4>Model Persona #1</h4>
+                            <h4>Model Person #1</h4>
                             <p>Urban Winter Jacket styling report ready.</p>
                             <div class="spark-badge"><i class="fa-solid fa-wand-magic-sparkles"></i> AI Generated</div>
                         </div>
@@ -96,7 +101,7 @@
                 <div class="feature-card">
                     <div class="feature-icon"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
                     <h3>AI Virtual Try-On</h3>
-                    <p>Select model personas and clothing items, then generate photorealistic mock outfits in seconds.</p>
+                    <p>Select model Person and clothing items, then generate photorealistic mock outfits in seconds.</p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon"><i class="fa-solid fa-folder-open"></i></div>
@@ -182,7 +187,7 @@
                         <i class="fa-solid fa-chevron-down"></i>
                     </div>
                     <div class="faq-answer">
-                        <p>Under the Wardrobe tab, navigate to "Models" and click the upload zone. Drop a clean front-facing full portrait photo to create a persona.</p>
+                        <p>Under the Wardrobe tab, navigate to "Models" and click the upload zone. Drop a clean front-facing full portrait photo to create a person.</p>
                     </div>
                 </div>
                 <div class="faq-item">
@@ -191,7 +196,7 @@
                         <i class="fa-solid fa-chevron-down"></i>
                     </div>
                     <div class="faq-answer">
-                        <p>Yes. All uploaded garments, personas, and generated assets are securely hosted locally or on private cloud storage, restricted to your user session ID.</p>
+                        <p>Yes. All uploaded garments, Person, and generated assets are securely hosted locally or on private cloud storage, restricted to your user session ID.</p>
                     </div>
                 </div>
             </div>
@@ -423,10 +428,6 @@
                     </div>
                     <span>Notifications</span>
                 </button>
-                <button class="icon-text-btn" onclick="toggleTheme()">
-                    <i class="fa-solid fa-sun" id="theme-icon"></i>
-                    <span>Theme Mode</span>
-                </button>
                 <button class="icon-text-btn danger" onclick="logout()">
                     <i class="fa-solid fa-arrow-right-from-bracket"></i>
                     <span>Sign Out</span>
@@ -454,7 +455,7 @@
                         <div class="stat-card-icon"><i class="fa-solid fa-user-tie"></i></div>
                         <div class="stat-card-info">
                             <span class="count-value animate-number" id="dash-models-count">0</span>
-                            <span class="count-lbl">Personas Created</span>
+                            <span class="count-lbl">Person Created</span>
                         </div>
                     </div>
                     <div class="stat-card-premium" onclick="switchTab('wardrobe', 'clothing')">
@@ -497,7 +498,7 @@
                             </button>
                             <button class="action-tile" onclick="switchTab('wardrobe', 'person')">
                                 <div class="tile-icon"><i class="fa-solid fa-user-plus"></i></div>
-                                <span>Add Persona</span>
+                                <span>Add Person</span>
                             </button>
                             <button class="action-tile" onclick="switchTab('profile')">
                                 <div class="tile-icon"><i class="fa-solid fa-sliders"></i></div>
@@ -520,7 +521,7 @@
                 <div class="section-header">
                     <div class="section-header-title">
                         <h2>Virtual Try-On Studio</h2>
-                        <p>Configure a model persona and clothing garment to synthesize the styled result.</p>
+                        <p>Configure a model person and clothing garment to synthesize the styled result.</p>
                     </div>
                 </div>
 
@@ -529,7 +530,7 @@
                         <!-- Model Selection -->
                         <div class="glass-card panel-card">
                             <div class="panel-header">
-                                <h3>Model Persona</h3>
+                                <h3>Model Person</h3>
                                 <span class="badge" id="person-count">0 available</span>
                             </div>
                             <div class="item-selection-grid" id="studio-person-grid">
@@ -599,7 +600,7 @@
                 <div class="section-header">
                     <div class="section-header-title">
                         <h2>Wardrobe & Model Inventory</h2>
-                        <p>Upload and manage clothes and model personas.</p>
+                        <p>Upload and manage clothes and model Person.</p>
                     </div>
                 </div>
 
@@ -608,7 +609,7 @@
                         <i class="fa-solid fa-shirt"></i> Clothes Inventory
                     </button>
                     <button class="wardrobe-tab-btn" id="wardrobe-tab-person-btn" onclick="switchWardrobeTab('person')">
-                        <i class="fa-solid fa-user-tie"></i> Models & Personas
+                        <i class="fa-solid fa-user-tie"></i> Models & Person
                     </button>
                 </div>
 
@@ -660,11 +661,11 @@
                     </div>
                 </div>
 
-                <!-- PERSONA MANAGEMENT -->
+                <!-- PERSON MANAGEMENT -->
                 <div id="wardrobe-person" class="wardrobe-content">
                     <div class="manager-grid">
                         <div class="glass-card">
-                            <h4><i class="fa-solid fa-user-plus"></i> Add Model Persona</h4>
+                            <h4><i class="fa-solid fa-user-plus"></i> Add Model Person</h4>
                             <form id="form-upload-person" class="upload-form" onsubmit="handlePersonUpload(event)">
                                 <div class="form-group">
                                     <label for="person-gender">Gender / Portrait Type</label>
@@ -690,11 +691,11 @@
                                         <img src="" alt="Person Preview">
                                     </div>
                                 </div>
-                                <button type="submit" class="btn-premium full"><i class="fa-solid fa-plus"></i> Create Persona</button>
+                                <button type="submit" class="btn-premium full"><i class="fa-solid fa-plus"></i> Create Person</button>
                             </form>
                         </div>
                         <div class="glass-card">
-                            <h4><i class="fa-solid fa-users"></i> Model Personas</h4>
+                            <h4><i class="fa-solid fa-users"></i> Model Person</h4>
                             <div class="manager-list-grid" id="manager-person-grid"></div>
                         </div>
                     </div>
@@ -833,7 +834,7 @@
                         <div class="profile-stats-mini">
                             <div class="mini-stat">
                                 <strong id="profile-stat-models">0</strong>
-                                <span>Personas</span>
+                                <span>Person</span>
                             </div>
                             <div class="mini-stat">
                                 <strong id="profile-stat-clothes">0</strong>

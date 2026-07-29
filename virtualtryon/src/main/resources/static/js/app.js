@@ -52,7 +52,24 @@ function normalizeImageSrc(imagePath) {
     const stripped = imagePath.trim();
     if (!stripped) return '';
     if (/^(data:|https?:\/\/)/i.test(stripped)) return stripped;
-    const normalized = stripped.replace(/\\/g, '/');
+    
+    let normalized = stripped.replace(/\\/g, '/');
+    
+    const tryonIdx = normalized.indexOf('outputs/tryon/');
+    if (tryonIdx !== -1) {
+        return '/' + normalized.substring(tryonIdx);
+    }
+    
+    const garmentIdx = normalized.indexOf('outputs/garment/');
+    if (garmentIdx !== -1) {
+        return '/' + normalized.substring(garmentIdx);
+    }
+
+    const uploadsIdx = normalized.indexOf('uploads/');
+    if (uploadsIdx !== -1) {
+        return '/' + normalized.substring(uploadsIdx);
+    }
+    
     return normalized.startsWith('/') ? normalized : `/${normalized}`;
 }
 
@@ -117,7 +134,7 @@ function initMockDatabase() {
             {
                 id: 1,
                 title: "Welcome to WearFashion AI Studio!",
-                message: "Configure your model personas and clothing garments in the Wardrobe tab, then use the Try-On Studio to synthesize styles.",
+                message: "Configure your model persons and clothing garments in the Wardrobe tab, then use the Try-On Studio to synthesize styles.",
                 time: "Just now",
                 unread: true
             }
@@ -180,7 +197,7 @@ function openModal(pageType) {
     if (pageType === 'about') {
         title.innerText = 'About WearFashion Studio';
         content.innerHTML = `
-            <p><strong>WearFashion</strong> is a state-of-the-art AI virtual fitting platform. By utilizing deep learning models, we enable designers and shoppers to synthesize fashion designs onto diverse model personas instantly.</p>
+            <p><strong>WearFashion</strong> is a state-of-the-art AI virtual fitting platform. By utilizing deep learning models, we enable designers and shoppers to synthesize fashion designs onto diverse model persons instantly.</p>
             <p style="margin-top:12px;">Our mission is to reduce physical clothing waste and sample patterns while providing customers with a premium, digital wardrobe try-on experience.</p>
         `;
     } else if (pageType === 'contact') {
@@ -884,7 +901,7 @@ async function triggerTryOn() {
 
         if (!response.ok) throw new Error(await readErrorMessage(response));
         const startData = await response.json();
-        const generatedId = startData.id;
+        const generatedId = startData.id || startData.generatedImageId;
 
         if (!generatedId) {
             throw new Error('Generation job was not created.');
@@ -1342,7 +1359,7 @@ async function deleteClothingItem(id) {
     }
 }
 
-// Render Wardrobe: Model Personas
+// Render Wardrobe: Model Persons
 function renderWardrobePersonList() {
     const grid = document.getElementById('manager-person-grid');
     if (!grid) return;
@@ -1351,7 +1368,7 @@ function renderWardrobePersonList() {
         grid.innerHTML = `
             <div class="empty-placeholder">
                 <i class="fa-solid fa-users-slash"></i>
-                <p>No model personas created yet.</p>
+                <p>No model persons created yet.</p>
             </div>
         `;
         return;
@@ -1362,12 +1379,12 @@ function renderWardrobePersonList() {
         const card = document.createElement('div');
         card.className = 'manager-card';
         card.innerHTML = `
-            <button class="delete-card-btn" onclick="deletePersonItem(${person.id})" title="Delete Persona">
+            <button class="delete-card-btn" onclick="deletePersonItem(${person.id})" title="Delete Person">
                 <i class="fa-solid fa-xmark"></i>
             </button>
             <img src="${normalizeImageSrc(person.imagePath)}" alt="${person.personName || 'Model'}">
             <div class="manager-card-details">
-                <h5>${person.personName || 'Model Persona'}</h5>
+                <h5>${person.personName || 'Model Person'}</h5>
                 <p>${person.gender} • Age: ${person.age}</p>
             </div>
         `;
@@ -1375,15 +1392,15 @@ function renderWardrobePersonList() {
     });
 }
 
-// Delete Model Persona
+// Delete Model Person
 async function deletePersonItem(id) {
-    if (!confirm('Are you sure you want to delete this model persona?')) return;
+    if (!confirm('Are you sure you want to delete this model person?')) return;
     try {
         const res = await fetch(`${API.person}/${id}`, {
             method: 'DELETE'
         });
         if (!res.ok) throw new Error();
-        showToast('Model persona deleted.', 'success');
+        showToast('Model person deleted.', 'success');
         
         if (state.selectedPersonId === id) {
             state.selectedPersonId = null;
@@ -1476,7 +1493,7 @@ async function handlePersonUpload(e) {
     formData.append('age', age);
     formData.append('image', fileInput.files[0]);
 
-    showToast('Adding model persona...', 'info');
+    showToast('Adding model person...', 'info');
     try {
         const res = await fetch(`${API.person}/upload`, {
             method: 'POST',
@@ -1484,9 +1501,9 @@ async function handlePersonUpload(e) {
         });
 
         if (!res.ok) throw new Error();
-        showToast('Model persona added successfully!', 'success');
+        showToast('Model person added successfully!', 'success');
         
-        addNotificationAlert("Persona Created", `New model persona "${personName}" was added successfully.`);
+        addNotificationAlert("Person Created", `New model person "${personName}" was added successfully.`);
         
         document.getElementById('form-upload-person').reset();
         document.getElementById('person-preview').style.display = 'none';

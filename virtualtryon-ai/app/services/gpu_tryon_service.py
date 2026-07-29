@@ -1,34 +1,24 @@
 import os
-
 import requests
 
+print(">>> GPU_TRYON_SERVICE LOADED <<<")
 
 OUTPUT_DIR = "output"
-
-os.makedirs(
-    OUTPUT_DIR,
-    exist_ok=True
-)
+os.makedirs(OUTPUT_DIR, exist_ok=True)
 
 
 class GpuTryOnService:
 
     def __init__(self):
 
-        # IMPORTANT:
-        # Paste ONLY the base ngrok URL.
-        # Do not add /health.
-        # Do not add /api/v1/gpu/tryon here.
-
         self.gpu_api_base_url = os.getenv(
             "GPU_API_BASE_URL",
-            "https://mutt-udder-easter.ngrok-free.dev"
+            "https://YOUR-NGROK-URL.ngrok-free.app"   # <-- Replace with your current ngrok URL
         )
 
         self.gpu_tryon_url = (
-            f"{self.gpu_api_base_url}/tryon"
+            self.gpu_api_base_url + "/tryon"
         )
-
 
     def generate_tryon(
         self,
@@ -37,44 +27,26 @@ class GpuTryOnService:
         request_id: str
     ) -> str:
 
+        print("================================")
+        print("GPU TRYON SERVICE")
+        print("================================")
+
+        print("PERSON :", person_path)
+        print("GARMENT :", garment_path)
+
         output_path = os.path.join(
             OUTPUT_DIR,
             f"{request_id}_tryon.png"
         )
 
-        print("================================")
-        print("CALLING COLAB GPU API")
-        print("================================")
-
-        print(
-            "GPU URL:",
-            self.gpu_tryon_url
-        )
-
-        print(
-            "PERSON:",
-            person_path
-        )
-
-        print(
-            "GARMENT:",
-            garment_path
-        )
-
-
-        with open(
-            person_path,
-            "rb"
-        ) as person_file, open(
-            garment_path,
-            "rb"
-        ) as garment_file:
+        with open(person_path, "rb") as person_file, \
+             open(garment_path, "rb") as garment_file:
 
             files = {
                 "person": (
                     os.path.basename(person_path),
                     person_file,
-                    "image/jpeg"
+                    "image/png"
                 ),
                 "garment": (
                     os.path.basename(garment_path),
@@ -83,66 +55,42 @@ class GpuTryOnService:
                 )
             }
 
+            form_data = {
+                "category": "shirt",
+                "garment_photo_type": "flat-lay"
+            }
+
+            print("--------------------------------")
+            print("POST URL :", self.gpu_tryon_url)
+            print("FORM DATA :", form_data)
+            print("FILES :", list(files.keys()))
+            print("--------------------------------")
+
             response = requests.post(
-                self.gpu_tryon_url,
+                url=self.gpu_tryon_url,
                 files=files,
+                data=form_data,
                 timeout=600
             )
 
-
-        print(
-            "GPU RESPONSE STATUS:",
-            response.status_code
-        )
-
+        print("--------------------------------")
+        print("STATUS :", response.status_code)
+        print("--------------------------------")
 
         if response.status_code != 200:
 
-            print(
-                "GPU ERROR RESPONSE:",
-                response.text
+            try:
+                print(response.json())
+            except Exception:
+                print(response.text)
+
+            raise Exception(
+                f"GPU API Error : {response.status_code}"
             )
 
-            raise RuntimeError(
-                "GPU try-on failed. "
-                f"Status: {response.status_code}. "
-                f"Response: {response.text}"
-            )
+        with open(output_path, "wb") as f:
+            f.write(response.content)
 
-
-        content_type = response.headers.get(
-            "content-type",
-            ""
-        )
-
-        print(
-            "GPU CONTENT TYPE:",
-            content_type
-        )
-
-
-        if "image/" not in content_type.lower():
-
-            raise RuntimeError(
-                "GPU API did not return an image. "
-                f"Content-Type: {content_type}. "
-                f"Response: {response.text}"
-            )
-
-
-        with open(
-            output_path,
-            "wb"
-        ) as output_file:
-
-            output_file.write(
-                response.content
-            )
-
-
-        print(
-            "FINAL TRY-ON SAVED:",
-            output_path
-        )
+        print("TRYON SAVED :", output_path)
 
         return output_path

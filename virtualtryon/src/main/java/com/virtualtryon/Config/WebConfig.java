@@ -23,6 +23,15 @@ public class WebConfig implements WebMvcConfigurer {
                         toDirectoryUri(aiUploads),
                         toDirectoryUri(aiCatVtonUploads)
                 );
+
+        Path appOutputs = projectRoot.resolve("outputs");
+        Path aiOutputs = projectRoot.resolve("../virtualtryon-ai/outputs");
+
+        registry.addResourceHandler("/outputs/**")
+                .addResourceLocations(
+                        toDirectoryUri(appOutputs),
+                        toDirectoryUri(aiOutputs)
+                );
     }
 
     private String toDirectoryUri(Path path) {

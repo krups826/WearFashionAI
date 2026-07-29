@@ -9,6 +9,13 @@ import com.virtualtryon.Entity.Clothing;
 
 
 import com.virtualtryon.Repository.ClothingRepository;
+import com.virtualtryon.Repository.GeneratedImageRepository;
+import com.virtualtryon.Repository.HistoryRepository;
+import com.virtualtryon.Entity.GeneratedImage;
+import com.virtualtryon.Entity.History;
+import com.virtualtryon.Entity.StyleRecommendation;
+import jakarta.persistence.EntityManager;
+import org.springframework.transaction.annotation.Transactional;
 
 
 import com.virtualtryon.Service.ClothingService;
@@ -39,6 +46,10 @@ public class ClothingServiceImpl
 
     private final FileStorageService
             fileStorageService;
+
+    private final GeneratedImageRepository generatedImageRepository;
+    private final HistoryRepository historyRepository;
+    private final EntityManager entityManager;
 
 
     @Override
@@ -214,6 +225,7 @@ public class ClothingServiceImpl
 
 
     @Override
+    @Transactional
     public void deleteClothing(
             Long id
     ) {
@@ -233,10 +245,39 @@ public class ClothingServiceImpl
                         );
 
 
-        fileStorageService.deleteFile(
+        // Clean up dependent resources in GeneratedImage, History, StyleRecommendation, Favorite, AIReport
+        List<GeneratedImage> dependentImages = generatedImageRepository.findAll().stream()
+                .filter(img -> img.getClothing() != null && img.getClothing().getId() == id)
+                .toList();
 
-                clothing.getImagePath()
-        );
+        for (GeneratedImage img : dependentImages) {
+            // Delete history entries for this generated image
+            List<History> historyEntries = historyRepository.findAll().stream()
+                    .filter(h -> h.getGeneratedImage() != null && h.getGeneratedImage().getId() == img.getId())
+                    .toList();
+            historyRepository.deleteAll(historyEntries);
+
+            // Delete style recommendations for this generated image using EntityManager
+            entityManager.createQuery("DELETE FROM StyleRecommendation r WHERE r.generatedImage = :img")
+                    .setParameter("img", img)
+                    .executeUpdate();
+
+            // Delete the generated image file from disk if it exists
+            if (img.getOutputImage() != null) {
+                try {
+                    fileStorageService.deleteFile(img.getOutputImage());
+                } catch (Exception ignored) {}
+            }
+
+            // Finally delete the generated image (AIReport and Favorite are cascade deleted)
+            generatedImageRepository.delete(img);
+        }
+
+        if (clothing.getImagePath() != null) {
+            try {
+                fileStorageService.deleteFile(clothing.getImagePath());
+            } catch (Exception ignored) {}
+        }
 
 
         clothingRepository.delete(
